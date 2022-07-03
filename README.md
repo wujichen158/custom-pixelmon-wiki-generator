@@ -15,13 +15,13 @@ Though users can get an entire page frame by processing the `.json` file of a pi
 * Authors
 
 ## What need to be edit
-* The previous and the next pixelmon of the current pixelmon
+* [The previous and the next pixelmon of the current pixelmon](https://github.com/wujichen158/custom-pixelmon-wiki-generator/wiki/Things-need-to-edit#edit-previous-and-next-pixelmon)
 * Pixelmon species
 * Pixelmon height (Since the program read the model height from `dimensions`. But model height ≠ real height)
 * Pokedex entry
 * Pixelmon biology 
 * Obtaining ways (W.I.P.)
 * Helding items (W.I.P.)
-* Custom Moves
+* [Custom Moves](https://github.com/wujichen158/custom-pixelmon-wiki-generator/wiki/Things-need-to-edit#custom-moves)
 * Evolution method (W.I.P.)
 * Datas & Resources Download links
