@@ -14,7 +14,7 @@ Though users can get an entire page frame by processing the `.json` file of a pi
 * Moves in official Pokemon game
 * Authors
 
-## What need to be edit
+## What need to edit
 * [The previous and the next pixelmon of the current pixelmon](https://github.com/wujichen158/custom-pixelmon-wiki-generator/wiki/Things-need-to-edit#edit-previous-and-next-pixelmon)
 * Pixelmon species
 * Pixelmon height (Since the program read the model height from `dimensions`. But model height ≠ real height)
@@ -23,5 +23,7 @@ Though users can get an entire page frame by processing the `.json` file of a pi
 * Obtaining ways (W.I.P.)
 * Helding items (W.I.P.)
 * [Custom Moves](https://github.com/wujichen158/custom-pixelmon-wiki-generator/wiki/Things-need-to-edit#custom-moves)
-* Evolution method (W.I.P.)
+* Evolution method
 * Datas & Resources Download links
+
+## Remember to upload the images about your pixelmons!
