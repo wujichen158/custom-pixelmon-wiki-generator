@@ -96,7 +96,7 @@ def savePixelmonAttributes(pixelmon, pixelmonNew):
 |evsd = """ + str(pixelmon['evYields']['specialDefense'])
 		if 'speed' in pixelmon['evYields']:
 			pixelmonNew['evYields'] += """
-|evsp = """ + pixelmon['evYields']['speed']
+|evsp = """ + str(pixelmon['evYields']['speed'])
 	
 	# catch rate
 	if 'catchRate' in pixelmon:
