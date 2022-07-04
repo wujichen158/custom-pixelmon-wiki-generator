@@ -23,6 +23,7 @@ Though users can get an entire page frame by processing the `.json` file of a pi
 * Obtaining ways (W.I.P.)
 * Helding items (W.I.P.)
 * [Custom Moves](https://github.com/wujichen158/custom-pixelmon-wiki-generator/wiki/Things-need-to-edit#custom-moves)
+* Moves learned before evolution
 * Evolution method
 * Datas & Resources Download links
 
