@@ -110,7 +110,7 @@ def savePixelmonAttributes(pixelmon, pixelmonNew):
 			pixelmonNew['ability1'] = cutAbilityName(pixelmon['abilities']['abilities'][0])
 			if len(pixelmon['abilities']['abilities']) > 1:
 				pixelmonNew['ability2'] = cutAbilityName(pixelmon['abilities']['abilities'][1])
-		if 'hiddenAbilities' in pixelmon['abilities']:
+		if 'hiddenAbilities' in pixelmon['abilities'] and len(pixelmon['abilities']['hiddenAbilities']) > 0:
 			pixelmonNew['hiddenability'] = cutAbilityName(pixelmon['abilities']['hiddenAbilities'][0])
 	
 	# egg groups
@@ -282,10 +282,7 @@ Some living habits and details about this Pixelmon.
 |name = """ + pixelmon['name'] + """
 |form = """ + pixelmon['form'] + """
 }}
-{{Spritebox/Footer
-|""" + pixelmon['ndex'] + """
-|""" + pixelmon['form'] + """
-}}
+{{Spritebox/Footer|""" + pixelmon['ndex'] + """|""" + pixelmon['form'] + """}}
 
 ==Download Links==
 {{DownloadLinks
@@ -299,13 +296,24 @@ Some living habits and details about this Pixelmon.
 ==Authors==
 {{Author
 |type1 = """ + pixelmon['type1'] + (("""
-|type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + """
-|data = """ + authors[0] + """
-|texture = """ + authors[1] + """
-|model = """ + authors[2] + """
+|type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + genAuthorStr(authors) + """
 }}"""
 	print(wikiStr)
 
+def genAuthorStr(authors):
+	authorStr = ""
+	for i, val in enumerate(authors):
+		if i == 0:
+			authorStr += """
+|data = """ + authors[0]
+		elif i == 1:
+			authorStr += """
+|texture = """ + authors[1]
+		elif i == 2:
+			authorStr += """
+|model = """ + authors[2]
+	return authorStr
+	
 def genLevelUpMoveStr(pixelmon):
 	moveStr = ""
 	for moveElem in pixelmon['levelUpMoves']:
@@ -409,14 +417,15 @@ def cutEggGroupName(eggGroup):
 	return str_res
 
 def cutAuthors(authorStr):
-	authors = ['Original Pixelmon data', 'Original Pixelmon Texture and Sprite', 'Original Pixelmon Model and Animation']
+	# authors = ['Original Pixelmon data', 'Original Pixelmon Texture and Sprite', 'Original Pixelmon Model and Animation']
+	authors = []
 	if len(authorStr) == 0 or authorStr.isspace():
 		return authors
 	str_list = authorStr.split(',')
 	if len(str_list) > 3:
 		str_list = {str_list[0], str_list[1], str_list[2]}
-	for i, val in enumerate(str_list):
-		authors[i] = str_list[i].strip()
+	for i in enumerate(str_list):
+		authors.append(i.strip())
 	return authors
 		
 if __name__ == '__main__':
@@ -424,7 +433,7 @@ if __name__ == '__main__':
 	print("Input your author infos(data, texture and model author). Separate with comma, e.g. Blackout,wujichen158,NaGesei")
 	authorStr = input("Leave blank to use the default authors:")
 	authors = cutAuthors(authorStr)
-	# authors = ["wujichen158", "wujichen158", "wujichen158"]
+	# authors = ["wujichen158", "wujichen158"]
 	form = input("Input the pixelmon's form you want to process to wiki format (Case sensitive!). Leave blank for pixelmons with no forms:")
 	if len(form) == 0 or form.isspace():
 		form = 'None'
