@@ -1,12 +1,5 @@
 import os
 import json
-'''for root, ds, fs in os.walk("C:\\Users\\asus\\Desktop\\moves"):
-	print(root)
-	for d in ds:
-		print(d)
-	for f in fs:
-		print(f)'''
-	
 
 def processDirs(dirs):
 	resStr = """{{#switch:{{{2|}}}
