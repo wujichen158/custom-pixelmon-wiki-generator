@@ -273,6 +273,20 @@ Some living habits and details about this Pixelmon.
 | type1-2 = 
 }}
 
+==Sprites==
+{{Spritebox/Header
+|type = """ + pixelmon['type1'] + (("""
+|type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + """
+}}
+{{Spritebox/Image
+|name = """ + pixelmon['name'] + """
+|form = """ + pixelmon['form'] + """
+}}
+{{Spritebox/Footer
+|""" + pixelmon['ndex'] + """
+|""" + pixelmon['form'] + """
+}}
+
 ==Download Links==
 {{DownloadLinks
 |type1 = """ + pixelmon['type1'] + (("""
