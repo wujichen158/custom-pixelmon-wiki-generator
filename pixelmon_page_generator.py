@@ -1,4 +1,5 @@
 import json
+import string
 
 typeEffectList = [[1,1,1,1,1,0.5,1,0,0.5,1,1,1,1,1,1,1,1,1],
 	[2,1,0.5,0.5,1,2,0.5,0,2,1,1,1,1,0.5,2,1,2,0.5],
@@ -68,7 +69,7 @@ def savePixelmonAttributes(pixelmon, pixelmonNew):
 	
 	# growth rate
 	if 'experienceGroup' in pixelmon:
-		pixelmonNew['growthrate'] = pixelmon['experienceGroup'].capitalize()
+		pixelmonNew['growthrate'] = mapExpGroupName(pixelmon['experienceGroup'].replace('_', ' ').title())
 		
 	# exp yielding and friendship
 	if 'spawn' in pixelmon:
@@ -117,6 +118,8 @@ def savePixelmonAttributes(pixelmon, pixelmonNew):
 	if 'eggGroups' in pixelmon:
 		pixelmonNew.pop('egggroup2', None)
 		pixelmonNew['egggroup1'] = cutEggGroupName(pixelmon['eggGroups'][0])
+		if pixelmonNew['egggroup1'] == 'Undiscovered':
+			pixelmonNew['egggroup1'] = '0'
 		if len(pixelmon['eggGroups']) > 1:
 			pixelmonNew['egggroup2'] = cutEggGroupName(pixelmon['eggGroups'][1])
 			
@@ -300,6 +303,18 @@ Some living habits and details about this Pixelmon.
 }}"""
 	print(wikiStr)
 
+def mapExpGroupName(oldName):
+	newName = "Unknown"
+	expGroupDict = {"Erratic": "Erratic",
+		"Fast": "Fast",
+		"Medium Fast": "Medium",
+		"Medium Slow": "Parabolic",
+		"Slow": "Slow",
+		"Fluctuating": "Fluctuating"}
+	if oldName in expGroupDict:
+		newName = expGroupDict[oldName]
+	return newName
+	
 def genAuthorStr(authors):
 	authorStr = ""
 	for i, val in enumerate(authors):
@@ -394,12 +409,12 @@ def genTypeEffect(pixelmon):
 	
 def cutAbilityName(ability):
 	str_list = list(ability)
-	upperIndex = 0
-	for i, val in enumerate(str_list):
-		if val.isupper():
-			upperIndex = i
-	if upperIndex > 0:
-		str_list.insert(upperIndex, ' ')
+	i = 0
+	while i < len(str_list):
+		if str_list[i].isupper() and i > 0 and str_list[i-1] != '-':
+			str_list.insert(i, ' ')
+			i += 1
+		i += 1
 	return ''.join(str_list)
 
 def cutEggGroupName(eggGroup):
