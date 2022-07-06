@@ -197,17 +197,17 @@ def buildWikiStr(pixelmon, authors):
 |weight-kg = """ + pixelmon['weight-kg'] + """
 |species = """ + pixelmon['species'] + """}}
 
-'''""" + pixelmon['form'] + " " + pixelmon['name'] + """''' is a """ + genPixelmonTypeDesc(pixelmon) + """ Pixelmon introduced in Gen 8.
+'''""" + pixelmon['form'] + " " + pixelmon['name'] + """''' is a """ + genPixelmonTypeDesc(pixelmon) + """ Pokémon introduced in Gen 8.
 
 
 ==Pokédex Entry==
 {{DexEntry
-|Some descriptions about this Pixelmon in Pokédex.
+|Some descriptions about this Pokémon in Pokédex.
 |type1 = """ + pixelmon['type1'] + (("""
 |type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + """}}
 
 ==Biology==
-Some living habits and details about this Pixelmon.
+Some living habits and details about this Pokémon.
 
 ==Game locations==
 {{Availability
@@ -449,7 +449,7 @@ if __name__ == '__main__':
 	authorStr = input("Leave blank to use the default authors:")
 	authors = cutAuthors(authorStr)
 	# authors = ["wujichen158", "wujichen158"]
-	form = input("Input the pixelmon's form you want to process to wiki format (Case sensitive!). Leave blank for pixelmons with no forms:")
+	form = input("Input the Pokémon form you want to process to wiki format (Case sensitive!). Leave blank for Pokémon with no forms:")
 	if len(form) == 0 or form.isspace():
 		form = 'None'
 	processData(readJSON(jsonPath+".json"), form, "", authors)
