@@ -197,17 +197,17 @@ def buildWikiStr(pixelmon, authors):
 |weight-kg = """ + pixelmon['weight-kg'] + """
 |species = """ + pixelmon['species'] + """}}
 
-'''""" + pixelmon['form'] + " " + pixelmon['name'] + """''' is a """ + genPixelmonTypeDesc(pixelmon) + """ Pixelmon introduced in Gen 8.
+'''""" + pixelmon['form'] + " " + pixelmon['name'] + """''' is a """ + genPixelmonTypeDesc(pixelmon) + """ Pokémon introduced in Gen 8.
 
 
 ==Pokédex Entry==
 {{DexEntry
-|Some descriptions about this Pixelmon in Pokédex.
+|Some descriptions about this Pokémon in Pokédex.
 |type1 = """ + pixelmon['type1'] + (("""
 |type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + """}}
 
 ==Biology==
-Some living habits and details about this Pixelmon.
+Some living habits and details about this Pokémon.
 
 ==Game locations==
 {{Availability
