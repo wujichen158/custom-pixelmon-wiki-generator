@@ -344,11 +344,12 @@ def genAuthorStr(authors):
 	return authorStr
 	
 def isMoveStab(pixelmon, move, moveset):
-	if moveset[move]['attackType'] == pixelmon['type1'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
-		return True
-	elif 'type2' in pixelmon:
-		if moveset[move]['attackType'] == pixelmon['type2'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
+	if move in moveset:
+		if moveset[move]['attackType'] == pixelmon['type1'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
 			return True
+		elif 'type2' in pixelmon:
+			if moveset[move]['attackType'] == pixelmon['type2'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
+				return True
 	return False
 	
 def genLevelUpMoveStr(pixelmon, moveset):
