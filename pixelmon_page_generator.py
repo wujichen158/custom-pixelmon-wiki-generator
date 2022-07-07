@@ -1,5 +1,6 @@
 import json
 import string
+import os
 
 typeEffectList = [[1,1,1,1,1,0.5,1,0,0.5,1,1,1,1,1,1,1,1,1],
 	[2,1,0.5,0.5,1,2,0.5,0,2,1,1,1,1,0.5,2,1,2,0.5],
@@ -33,7 +34,20 @@ def readJSON(jsonPath):
 		data = json.load(f)
 		return data
 
+def processMoves():
+	moveset = {}
+	for f in os.listdir("moves"):
+		move = {}
+		if f.endswith(".json"):
+			data = readJSON("moves/" + f)
+			move['attackType'] = data['attackType'].capitalize()
+			move['attackCategory'] = data['attackCategory'].capitalize()
+			move['basePower'] = data['basePower']
+			moveset[data['attackName']] = move
+	return moveset
+
 def processData(data, form, defaultForm, authors):
+	moveset = processMoves()
 	result = {}
 	result['name'] = data['name']
 	result['ndex'] = str(data['dex'])
@@ -49,7 +63,7 @@ def processData(data, form, defaultForm, authors):
 				raise Exception("Custom forms should be written after the default form.")
 			savePixelmonAttributes(pixelmon, result)
 	# print(result)
-	buildWikiStr(result, authors)
+	buildWikiStr(result, authors, moveset)
 
 def savePixelmonAttributes(pixelmon, pixelmonNew):
 	# types:
@@ -164,7 +178,7 @@ def savePixelmonAttributes(pixelmon, pixelmonNew):
 		# tranfer moves
 		pixelmonNew['transferMoves'] = pixelmon['moves']['transferMoves']
 
-def buildWikiStr(pixelmon, authors):
+def buildWikiStr(pixelmon, authors, moveset):
 	wikiStr = """{{PokemonPrevNextHead
 |type = """ + pixelmon['type1'] + (("""
 |type2 = """ + pixelmon['type2']) if 'type2' in pixelmon else ("")) + """
@@ -247,19 +261,19 @@ Some living habits and details about this Pokémon.
 
 ==Moves==
 ===By leveling up===
-{{MoveLevelStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genLevelUpMoveStr(pixelmon) + """
+{{MoveLevelStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genLevelUpMoveStr(pixelmon, moveset) + """
 {{MoveLevelEnd|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}
 
 ===By Gen 8 TM/TR===
-{{MoveTM8Start|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genTM8MoveStr(pixelmon) + genTRMoveStr(pixelmon) + """
+{{MoveTM8Start|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genTM8MoveStr(pixelmon, moveset) + genTRMoveStr(pixelmon, moveset) + """
 {{MoveTM8End|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}
 
 ===By breeding===
-{{MoveBreedStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genEggMoveStr(pixelmon) + """
+{{MoveBreedStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genEggMoveStr(pixelmon, moveset) + """
 {{MoveBreedEnd|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}
 
 ===By tutoring===
-{{MoveTutorStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genTutorMoveStr(pixelmon) + genTransferMoveStr(pixelmon) + """
+{{MoveTutorStart|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}""" + genTutorMoveStr(pixelmon, moveset) + genTransferMoveStr(pixelmon, moveset) + """
 {{MoveTutorEnd|""" + pixelmon['form'] + " " + pixelmon['name'] + "|" + pixelmon['type1'] + "|" + (pixelmon['type2'] if 'type2' in pixelmon else pixelmon['type1']) + """}}
 
 ==Evolution==
@@ -329,49 +343,44 @@ def genAuthorStr(authors):
 |model = """ + authors[2]
 	return authorStr
 	
-def genLevelUpMoveStr(pixelmon):
+def isMoveStab(pixelmon, move, moveset):
+	if moveset[move]['attackType'] == pixelmon['type1'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
+		return True
+	elif 'type2' in pixelmon:
+		if moveset[move]['attackType'] == pixelmon['type2'] and moveset[move]['attackCategory'] != 'Status' and moveset[move]['basePower'] > 0:
+			return True
+	return False
+	
+def genLevelUpMoveStr(pixelmon, moveset):
 	moveStr = ""
 	for moveElem in pixelmon['levelUpMoves']:
 		for move in moveElem['attacks']:
 			moveStr += """
-{{MoveLevel+|""" + str(moveElem['level'] if moveElem['level'] != 0 else '') + "|" + move +"""}}"""
+{{MoveLevel+|""" + str(moveElem['level'] if moveElem['level'] != 0 else '') + "|" + move + ("|'''" if isMoveStab(pixelmon, move, moveset) else "") + """}}"""
 	return moveStr
 	
-def genEggMoveStr(pixelmon):
-	moveStr = ""
-	for move in pixelmon['eggMoves']:
-		moveStr += """
-{{MoveLevel+||""" + move + """}}"""
-	return moveStr
+def genEggMoveStr(pixelmon, moveset):
+	return genAbstractMoveStr(pixelmon, "eggMoves", "", moveset)
 	
-def genTM8MoveStr(pixelmon):
+def genTM8MoveStr(pixelmon, moveset):
+	return genAbstractMoveStr(pixelmon, "tmMoves8", "", moveset)
+
+def genTRMoveStr(pixelmon, moveset):
+	return genAbstractMoveStr(pixelmon, "trMoves", "", moveset)
+	
+def genTutorMoveStr(pixelmon, moveset):
+	return genAbstractMoveStr(pixelmon, "tutorMoves", "Tutor", moveset)
+	
+def genTransferMoveStr(pixelmon, moveset):
+	return genAbstractMoveStr(pixelmon, "transferMoves", "Transfer", moveset)
+
+def genAbstractMoveStr(pixelmon, moveKey, moveType, moveset):
 	moveStr = ""
-	for move in pixelmon['tmMoves8']:
+	for move in pixelmon[moveKey]:
 		moveStr += """
-{{MoveLevel+||""" + move + """}}"""
+{{MoveLevel+|""" + moveType + "|" + move + ("|'''" if isMoveStab(pixelmon, move, moveset) else "") + """}}"""
 	return moveStr
 
-def genTRMoveStr(pixelmon):
-	moveStr = ""
-	for move in pixelmon['trMoves']:
-		moveStr += """
-{{MoveLevel+||""" + move + """}}"""
-	return moveStr
-	
-def genTutorMoveStr(pixelmon):
-	moveStr = ""
-	for move in pixelmon['tutorMoves']:
-		moveStr += """
-{{MoveLevel+|Tutor|""" + move + """}}"""
-	return moveStr
-	
-def genTransferMoveStr(pixelmon):
-	moveStr = ""
-	for move in pixelmon['transferMoves']:
-		moveStr += """
-{{MoveLevel+|Transfer|""" + move + """}}"""
-	return moveStr
-	
 def genPixelmonTypeDesc(pixelmon):
 	if 'type2' in pixelmon:
 		typeStr = "dual-type {{Bt|" + pixelmon['type1'] + "}}/{{Bt|" + pixelmon['type2'] + "}}"
