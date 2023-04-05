@@ -1,28 +1,32 @@
 {
-  "attackName": "Bitter Malice",
+  "attackIndex": 485,
+  "attackName": "Ancient Shadow Force",
   "attackType": "GHOST",
-  "attackCategory": "SPECIAL",
-  "basePower": 60,
-  "ppBase": 15,
-  "ppMax": 24,
+  "attackCategory": "PHYSICAL",
+  "basePower": 120,
+  "ppBase": 5,
+  "ppMax": 8,
   "accuracy": 100,
-  "makesContact": false,
+  "makesContact": true,
   "effects": [
     {
-      "type": "Frostbite",
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 30.0
-        }
-      ],
-      "persists": false,
-      "effectTypeID": "Frostbite"
+      "message": "pixelmon.effect.shadowforce",
+      "base": "Vanish",
+      "type": "Vanish",
+      "modifiers": [],
+      "persists": true,
+      "effectTypeID": "ShadowForce"
     },
     {
-      "effectTypeID": "BarbBarrage",
       "modifiers": [],
-      "persists": false
+      "persists": false,
+      "effectTypeID": "Feint"
+    },
+    {
+      "type": "Obscured",
+      "modifiers": [],
+      "persists": false,
+      "effectTypeID": "Obscured"
     }
   ],
   "animations": [
@@ -41,7 +45,7 @@
     {
       "crystal": "ghostium_z",
       "attackName": "Never-Ending Nightmare",
-      "basePower": 130,
+      "basePower": 190,
       "effects": [],
       "allowedPokemon": []
     }

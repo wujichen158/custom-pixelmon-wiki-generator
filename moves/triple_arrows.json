@@ -1,34 +1,42 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
-  "attackType": "ICE",
-  "attackCategory": "SPECIAL",
-  "basePower": 70,
-  "ppBase": 20,
-  "ppMax": 32,
+  "attackName": "Triple Arrows",
+  "attackType": "FIGHTING",
+  "attackCategory": "PHYSICAL",
+  "basePower": 90,
+  "ppBase": 10,
+  "ppMax": 24,
   "accuracy": 100,
   "makesContact": false,
   "effects": [
     {
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 100.0
-        }
-      ],
+      "stages": 1,
+      "modifiers": [],
       "persists": false,
-      "effectTypeID": "FreezeDry"
+      "effectTypeID": "CriticalHit"
     },
     {
-      "type": "Freeze",
+      "type": "DEFENSE",
+      "amount": -1,
+      "isUser": false,
       "modifiers": [
         {
           "type": "Chance",
-          "value": 10.0
+          "value": 50.0
         }
       ],
       "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "StatsEffect"
+    },
+    {
+      "type": "Flinch",
+      "modifiers": [
+        {
+          "type": "Chance",
+          "value": 30.0
+        }
+      ],
+      "persists": false,
+      "effectTypeID": "Flinch"
     }
   ],
   "animations": [
@@ -45,9 +53,9 @@
   },
   "z": [
     {
-      "crystal": "icium_z",
-      "attackName": "Subzero Slammer",
-      "basePower": 140,
+      "crystal": "fightinium_z",
+      "attackName": "All-Out Pummeling",
+      "basePower": 175,
       "effects": [],
       "allowedPokemon": []
     }

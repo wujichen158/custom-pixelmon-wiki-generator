@@ -1,34 +1,28 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
-  "attackType": "ICE",
-  "attackCategory": "SPECIAL",
-  "basePower": 70,
-  "ppBase": 20,
-  "ppMax": 32,
+  "attackName": "Dire Claw",
+  "attackType": "POISON",
+  "attackCategory": "PHYSICAL",
+  "basePower": 60,
+  "ppBase": 15,
+  "ppMax": 24,
   "accuracy": 100,
-  "makesContact": false,
+  "makesContact": true,
   "effects": [
     {
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 100.0
-        }
-      ],
+      "stages": 1,
+      "modifiers": [],
       "persists": false,
-      "effectTypeID": "FreezeDry"
+      "effectTypeID": "CriticalHit"
     },
     {
-      "type": "Freeze",
       "modifiers": [
         {
           "type": "Chance",
-          "value": 10.0
+          "value": 50.0
         }
       ],
       "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "DireClaw"
     }
   ],
   "animations": [
@@ -45,9 +39,9 @@
   },
   "z": [
     {
-      "crystal": "icium_z",
-      "attackName": "Subzero Slammer",
-      "basePower": 140,
+      "crystal": "poisonium_z",
+      "attackName": "Acid Downpour",
+      "basePower": 120,
       "effects": [],
       "allowedPokemon": []
     }

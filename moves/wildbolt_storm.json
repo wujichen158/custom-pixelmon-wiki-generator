@@ -1,34 +1,23 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
-  "attackType": "ICE",
+  "attackName": "Wildbolt Storm",
+  "attackType": "ELECTRIC",
   "attackCategory": "SPECIAL",
-  "basePower": 70,
-  "ppBase": 20,
-  "ppMax": 32,
-  "accuracy": 100,
+  "basePower": 95,
+  "ppBase": 5,
+  "ppMax": 8,
+  "accuracy": 80,
   "makesContact": false,
   "effects": [
     {
+      "type": "Paralysis",
       "modifiers": [
         {
           "type": "Chance",
-          "value": 100.0
+          "value": 30.0
         }
       ],
       "persists": false,
-      "effectTypeID": "FreezeDry"
-    },
-    {
-      "type": "Freeze",
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 10.0
-        }
-      ],
-      "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "Paralysis"
     }
   ],
   "animations": [
@@ -45,9 +34,9 @@
   },
   "z": [
     {
-      "crystal": "icium_z",
-      "attackName": "Subzero Slammer",
-      "basePower": 140,
+      "crystal": "electrium_z",
+      "attackName": "Gigavolt Havoc",
+      "basePower": 175,
       "effects": [],
       "allowedPokemon": []
     }

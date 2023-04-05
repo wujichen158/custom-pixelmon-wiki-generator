@@ -1,8 +1,7 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
-  "attackType": "ICE",
-  "attackCategory": "SPECIAL",
+  "attackName": "Aqua Cutter",
+  "attackType": "WATER",
+  "attackCategory": "PHYSICAL",
   "basePower": 70,
   "ppBase": 20,
   "ppMax": 32,
@@ -10,25 +9,10 @@
   "makesContact": false,
   "effects": [
     {
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 100.0
-        }
-      ],
+      "stages": 1,
+      "modifiers": [],
       "persists": false,
-      "effectTypeID": "FreezeDry"
-    },
-    {
-      "type": "Freeze",
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 10.0
-        }
-      ],
-      "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "CriticalHit"
     }
   ],
   "animations": [
@@ -45,8 +29,8 @@
   },
   "z": [
     {
-      "crystal": "icium_z",
-      "attackName": "Subzero Slammer",
+      "crystal": "waterium_z",
+      "attackName": "Hydro Vortex",
       "basePower": 140,
       "effects": [],
       "allowedPokemon": []

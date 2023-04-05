@@ -1,19 +1,20 @@
 {
-  "attackIndex": 674,
-  "attackName": "Photon Geyser",
+  "attackName": "Psyshield Bash",
   "attackType": "PSYCHIC",
-  "attackCategory": "SPECIAL",
-  "basePower": 100,
-  "ppBase": 5,
-  "ppMax": 8,
-  "accuracy": 100,
-  "makesContact": false,
-  "ignoreAbility": true,
+  "attackCategory": "PHYSICAL",
+  "basePower": 70,
+  "ppBase": 10,
+  "ppMax": 16,
+  "accuracy": 90,
+  "makesContact": true,
   "effects": [
     {
+      "type": "DEFENSE",
+      "amount": 1,
+      "isUser": true,
       "modifiers": [],
       "persists": false,
-      "effectTypeID": "PhotonGeyser"
+      "effectTypeID": "StatsEffect"
     }
   ],
   "animations": [
@@ -32,16 +33,9 @@
     {
       "crystal": "psychium_z",
       "attackName": "Shattered Psyche",
-      "basePower": 180,
+      "basePower": 140,
       "effects": [],
       "allowedPokemon": []
-    },
-	{
-      "crystal": "ultranecrozium_z",
-      "attackName": "Light That Burns the Sky",
-      "basePower": 200,
-      "effects": [],
-      "allowedPokemon": ["Necrozma form:ultra"]
     }
   ]
 }

@@ -1,19 +1,20 @@
 {
-  "attackIndex": 674,
-  "attackName": "Photon Geyser",
-  "attackType": "PSYCHIC",
+  "attackName": "Torch Song",
+  "attackType": "FIRE",
   "attackCategory": "SPECIAL",
-  "basePower": 100,
-  "ppBase": 5,
-  "ppMax": 8,
+  "basePower": 80,
+  "ppBase": 10,
+  "ppMax": 16,
   "accuracy": 100,
   "makesContact": false,
-  "ignoreAbility": true,
   "effects": [
     {
+      "type": "SPECIAL_ATTACK",
+      "amount": 1,
+      "isUser": true,
       "modifiers": [],
       "persists": false,
-      "effectTypeID": "PhotonGeyser"
+      "effectTypeID": "StatsEffect"
     }
   ],
   "animations": [
@@ -28,20 +29,17 @@
     "hitsAdjacentAlly": true,
     "hitsExtendedAlly": false
   },
+  "flags": {
+    "authentic": true,
+    "sound": true
+  },
   "z": [
     {
-      "crystal": "psychium_z",
-      "attackName": "Shattered Psyche",
-      "basePower": 180,
+      "crystal": "firium_z",
+      "attackName": "Inferno Overdrive",
+      "basePower": 160,
       "effects": [],
       "allowedPokemon": []
-    },
-	{
-      "crystal": "ultranecrozium_z",
-      "attackName": "Light That Burns the Sky",
-      "basePower": 200,
-      "effects": [],
-      "allowedPokemon": ["Necrozma form:ultra"]
     }
   ]
 }

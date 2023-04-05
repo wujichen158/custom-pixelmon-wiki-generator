@@ -1,19 +1,17 @@
 {
-  "attackIndex": 674,
-  "attackName": "Photon Geyser",
+  "attackName": "Mystical Power",
   "attackType": "PSYCHIC",
   "attackCategory": "SPECIAL",
-  "basePower": 100,
-  "ppBase": 5,
-  "ppMax": 8,
-  "accuracy": 100,
+  "basePower": 70,
+  "ppBase": 10,
+  "ppMax": 16,
+  "accuracy": 90,
   "makesContact": false,
-  "ignoreAbility": true,
   "effects": [
     {
       "modifiers": [],
       "persists": false,
-      "effectTypeID": "PhotonGeyser"
+      "effectTypeID": "MysticalPower"
     }
   ],
   "animations": [
@@ -32,16 +30,9 @@
     {
       "crystal": "psychium_z",
       "attackName": "Shattered Psyche",
-      "basePower": 180,
+      "basePower": 140,
       "effects": [],
       "allowedPokemon": []
-    },
-	{
-      "crystal": "ultranecrozium_z",
-      "attackName": "Light That Burns the Sky",
-      "basePower": 200,
-      "effects": [],
-      "allowedPokemon": ["Necrozma form:ultra"]
     }
   ]
 }

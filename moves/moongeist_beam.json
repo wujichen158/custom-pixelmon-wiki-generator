@@ -35,7 +35,7 @@
       "attackName": "Menacing Moonraze Maelstrom",
       "basePower": 200,
       "effects": [],
-      "allowedPokemon": ["Lunala","Necrozma-dawn"]
+      "allowedPokemon": ["Lunala","Necrozma form:dawn"]
     }
   ]
 }

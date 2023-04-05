@@ -1,34 +1,31 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
+  "attackName": "Mountain Gale",
   "attackType": "ICE",
-  "attackCategory": "SPECIAL",
-  "basePower": 70,
-  "ppBase": 20,
-  "ppMax": 32,
-  "accuracy": 100,
+  "attackCategory": "PHYSICAL",
+  "basePower": 100,
+  "ppBase": 5,
+  "ppMax": 8,
+  "accuracy": 85,
   "makesContact": false,
   "effects": [
     {
+      "type": "Flinch",
       "modifiers": [
         {
           "type": "Chance",
-          "value": 100.0
+          "value": 30.0
         }
       ],
       "persists": false,
-      "effectTypeID": "FreezeDry"
+      "effectTypeID": "Flinch"
     },
     {
-      "type": "Freeze",
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 10.0
-        }
-      ],
+      "type": "SPEED",
+      "amount": -1,
+      "isUser": true,
+      "modifiers": [],
       "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "StatsEffect"
     }
   ],
   "animations": [
@@ -47,7 +44,7 @@
     {
       "crystal": "icium_z",
       "attackName": "Subzero Slammer",
-      "basePower": 140,
+      "basePower": 180,
       "effects": [],
       "allowedPokemon": []
     }

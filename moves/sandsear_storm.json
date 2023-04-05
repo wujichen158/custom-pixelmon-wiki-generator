@@ -1,34 +1,23 @@
 {
-  "attackIndex": 581,
-  "attackName": "Freeze-Dry",
-  "attackType": "ICE",
+  "attackName": "Sandsear Storm",
+  "attackType": "GROUND",
   "attackCategory": "SPECIAL",
-  "basePower": 70,
-  "ppBase": 20,
-  "ppMax": 32,
-  "accuracy": 100,
+  "basePower": 95,
+  "ppBase": 5,
+  "ppMax": 8,
+  "accuracy": 80,
   "makesContact": false,
   "effects": [
     {
+      "type": "Burn",
       "modifiers": [
         {
           "type": "Chance",
-          "value": 100.0
+          "value": 30.0
         }
       ],
       "persists": false,
-      "effectTypeID": "FreezeDry"
-    },
-    {
-      "type": "Freeze",
-      "modifiers": [
-        {
-          "type": "Chance",
-          "value": 10.0
-        }
-      ],
-      "persists": false,
-      "effectTypeID": "Freeze"
+      "effectTypeID": "Burn"
     }
   ],
   "animations": [
@@ -45,9 +34,9 @@
   },
   "z": [
     {
-      "crystal": "icium_z",
-      "attackName": "Subzero Slammer",
-      "basePower": 140,
+      "crystal": "groundium_z",
+      "attackName": "Tectonic Rage",
+      "basePower": 175,
       "effects": [],
       "allowedPokemon": []
     }
