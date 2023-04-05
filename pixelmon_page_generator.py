@@ -449,7 +449,7 @@ def cutAuthors(authorStr):
 	str_list = authorStr.split(',')
 	if len(str_list) > 3:
 		str_list = {str_list[0], str_list[1], str_list[2]}
-	for i in enumerate(str_list):
+	for i in str_list:
 		authors.append(i.strip())
 	return authors
 		
